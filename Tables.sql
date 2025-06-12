@@ -16,7 +16,7 @@ CREATE TABLE users_registration (
     user_id INT IDENTITY(1,1) PRIMARY KEY, -- Auto-incrementing primary key
     Full_Name NVARCHAR(100),               -- User's full name
     email NVARCHAR(100),                   -- User's email address
-    Password NVARCHAR(255),                -- User's password (should be hashed for security)
+    Password NVARCHAR(255),                -- User's password
     country NVARCHAR(20)                   -- User's country
 );
 
