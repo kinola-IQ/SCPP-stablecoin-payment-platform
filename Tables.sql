@@ -1,6 +1,6 @@
 
 -- Create the database if it doesn't already exist
-CREATE DATABASE IF NOT EXISTS my_database;
+CREATE DATABASE IF NOT EXISTS stablecoin;
 
 -- Switch to the 'stablecoin' database
 USE stablecoin;
@@ -13,23 +13,23 @@ DROP TABLE IF EXISTS users_registration;
 
 -- Create the 'users_registration' table to store user details
 CREATE TABLE users_registration (
-    user_id INT IDENTITY(1,1) PRIMARY KEY, -- Auto-incrementing primary key
-    Full_Name NVARCHAR(100),               -- User's full name
-    email NVARCHAR(100),                   -- User's email address
-    Password NVARCHAR(255),                -- User's password (should be hashed for security)
-    country NVARCHAR(20)                   -- User's country
+Â Â Â  user_id INT IDENTITY(1,1) PRIMARY KEY, -- Auto-incrementing primary key
+Â Â Â  Full_Name NVARCHAR(100),Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- User's full name
+Â Â Â  email NVARCHAR(100),Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- User's email address
+Â Â Â  Password NVARCHAR(255),Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- User's password
+Â Â Â  country NVARCHAR(20)Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- User's country
 );
 
 -- Create the 'wallets' table to store wallet balances and status
 CREATE TABLE wallets (
-    wallet_id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY, -- Unique wallet ID generated automatically
-    user_id INT NOT NULL,                                   -- Foreign key linking to users_registration
-    email NVARCHAR(100),                                    -- Email associated with the wallet
-    cNGN REAL DEFAULT 0,                                    -- Balance in cNGN (default 0)
-    GBP REAL DEFAULT 0,                                     -- Balance in GBP (default 0)
-    USDx REAL DEFAULT 0,                                    -- Balance in USDx (default 0)
-    EURx REAL DEFAULT 0,                                    -- Balance in EURx (default 0)
-    wallet_status VARCHAR(10) NOT NULL CHECK (wallet_status IN ('active', 'suspended', 'closed')), -- Wallet status with allowed values
-    creation_date DATETIME DEFAULT GETDATE(),               -- Timestamp of wallet creation
-    FOREIGN KEY (user_id) REFERENCES users_registration(user_id) -- Enforce relationship with users_registration
+Â Â Â  wallet_id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY, -- Unique wallet ID generated automatically
+Â Â Â  user_id INT NOT NULL,Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Foreign key linking to users_registration
+Â Â Â  email NVARCHAR(100),Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Email associated with the wallet
+Â Â Â  cNGN REAL DEFAULT 0,Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Balance in cNGN (default 0)
+Â Â Â  GBP REAL DEFAULT 0,Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Balance in GBP (default 0)
+Â Â Â  USDx REAL DEFAULT 0,Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Balance in USDx (default 0)
+Â Â Â  EURx REAL DEFAULT 0,Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Balance in EURx (default 0)
+Â Â Â  wallet_status VARCHAR(10) NOT NULL CHECK (wallet_status IN ('active', 'suspended', 'closed')), -- Wallet status with allowed values
+Â Â Â  creation_date DATETIME DEFAULT GETDATE(),Â Â Â Â Â Â Â Â Â Â Â Â Â Â  -- Timestamp of wallet creation
+Â Â Â  FOREIGN KEY (user_id) REFERENCES users_registration(user_id) -- Enforce relationship with users_registration
 );
