@@ -1,22 +1,33 @@
 ```markdown
 # SCPP Stablecoin Payment Platform
 
+```markdown
 ## Repository Structure
 
 ```
 
-/
+.
 ├── main.py
+
 ├── Tables.sql
-├── components/
+
+├── components
+
 │   ├── Home.py
+
 │   ├── wallet\_create.py
+
 │   ├── Dashboard.py
+
 │   └── Transaction\_History.py
-└── images/
+
+└── images
+
 └── OIP.jpeg
 
-````
+```
+```
+
 
 ## Description
 
