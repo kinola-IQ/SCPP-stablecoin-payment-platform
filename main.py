@@ -3,7 +3,6 @@ import time
 import pandas as pd
 from sqlalchemy import create_engine, text
 import urllib
-from sqlalchemy.exc import OperationalError
 
 # Cached database connection for efficiency
 @st.cache_resource
@@ -11,21 +10,14 @@ def get_database_connection():
     # ODBC connection string for SQL Server
     odbc_str = (
         "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=dbserver.company.local,1433;"
-        "DATABASE=StableCoin;"
-        "UID=appuser"
-        )
+        "SERVER=localhost;"
+        "DATABASE=stablecoin;"
+        "Trusted_Connection=yes;"
+    )
     # URL encode the connection string
     conn_str = urllib.parse.quote_plus(odbc_str)
     # Create SQLAlchemy engine
-    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}",echo=True)
-    try:
-        with engine.connect() as con:
-            pass
-    except OperationalError as err:
-        import streamlit as st
-        st.error(f"DBAPI error: {err.orig.args}")
-        raise
+    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}")
     return engine
 
 # Initialize session state for login status if not already set
