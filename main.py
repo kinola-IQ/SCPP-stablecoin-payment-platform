@@ -9,15 +9,23 @@ import urllib
 def get_database_connection():
     # ODBC connection string for SQL Server
     odbc_str = (
-        "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=localhost;"
-        "DATABASE=stablecoin;"
-        "Trusted_Connection=yes;"
+    "DRIVER={ODBC Driver 17 for SQL Server};"
+    "SERVER=your_server_address,1433;"
+    "DATABASE=your_db_name;"
+    "UID=your_username;"
+    "PWD=your_password;"
+    "Connect Timeout=30;"
+    "Authentication=SqlPassword;"
     )
     # URL encode the connection string
-    conn_str = urllib.parse.quote_plus(odbc_str)
-    # Create SQLAlchemy engine
-    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}")
+    connection_url = f"mssql+pyodbc:///?odbc_connect={urllib.parse.quote_plus(odbc_str)}"
+    engine = create_engine(
+        connection_url,
+        pool_pre_ping=True,
+        pool_size=5,
+        max_overflow=10,
+        connect_args={"timeout": 30}
+    )
     return engine
 
 # Initialize session state for login status if not already set
