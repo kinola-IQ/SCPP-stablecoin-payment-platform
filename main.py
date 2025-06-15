@@ -10,10 +10,9 @@ def get_database_connection():
     # ODBC connection string for SQL Server
     odbc_str = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=your_server_address,1433;"
-    "DATABASE=your_db_name;"
-    "UID=your_username;"
-    "PWD=your_password;"
+    "SERVER=DESKTOP-H2S6EIU,1433;"
+    "DATABASE=Stablecoin;"
+    "UID=DESKTOP-H2S6EIU\Omolayo-Akinola;"
     "Connect Timeout=30;"
     "Authentication=SqlPassword;"
     )
