@@ -10,14 +10,14 @@ def get_database_connection():
     # ODBC connection string for SQL Server
     odbc_str = (
         "DRIVER={ODBC Driver 17 for SQL Server};"
-        "SERVER=localhost;"
-        "DATABASE=stablecoin;"
-        "Trusted_Connection=yes;"
-    )
+        "SERVER=dbserver.company.local,1433;"
+        "DATABASE=StableCoinDB;"
+        "UID=appuser;PWD=Secret123"
+        )
     # URL encode the connection string
     conn_str = urllib.parse.quote_plus(odbc_str)
     # Create SQLAlchemy engine
-    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}")
+    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={conn_str}",echo=True)
     return engine
 
 # Initialize session state for login status if not already set
