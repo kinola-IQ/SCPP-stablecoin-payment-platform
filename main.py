@@ -11,7 +11,7 @@ def get_database_connection():
     odbc_str = (
         "DRIVER={ODBC Driver 17 for SQL Server};"
         "SERVER=dbserver.company.local,1433;"
-        "DATABASE=StableCoinDB;"
+        "DATABASE=StableCoin;"
         "UID=appuser;PWD=Secret123"
         )
     # URL encode the connection string
