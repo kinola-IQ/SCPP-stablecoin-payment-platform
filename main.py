@@ -13,15 +13,17 @@ def get_database_connection():
     "?driver=ODBC+Driver+17+for+SQL+Server"
     "&trusted_connection=yes"
     )
-    # URL encode the connection string
-    connection_url = f"mssql+pyodbc:///?odbc_connect={urllib.parse.quote_plus(odbc_str)}"
-    engine = create_engine(
-        connection_url,
-        pool_pre_ping=True,
-        pool_size=5,
-        max_overflow=10,
-        connect_args={"timeout": 30}
-    )
+    engine = create_engine(odbc_str)
+
+    # # URL encode the connection string
+    # connection_url = f"mssql+pyodbc:///?odbc_connect={urllib.parse.quote_plus(odbc_str)}"
+    # engine = create_engine(
+    #     connection_url,
+    #     pool_pre_ping=True,
+    #     pool_size=5,
+    #     max_overflow=10,
+    #     connect_args={"timeout": 30}
+    # )
     return engine
 
 # Initialize session state for login status if not already set
