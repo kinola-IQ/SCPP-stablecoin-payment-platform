@@ -101,26 +101,26 @@ def toggle_wallet_activation():
 home_page = st.Page(lambda: None, title="Login")  # placeholder, home handled in main below
 
 profile_page = st.Page(
-    page=r"C:\Users\Omolayo-Akinola\Documents\intersteller\SCPP project\components\Home.py",
+    page=r"components/Home.py",
     title="Profile",
     icon="👤"
 )
 
 wallet_page = st.Page(
-    page=r"C:\Users\Omolayo-Akinola\Documents\intersteller\SCPP project\components\wallet_create.py",
+    page=r"components/wallet_create.py",
     title="Wallet",
     icon="💰"
 )
 
 dashboard_page = st.Page(
-    page=r"C:\Users\Omolayo-Akinola\Documents\intersteller\SCPP project\components\Dashboard.py",
+    page=r"components/Dashboard.py",
     title="Dashboard",
     icon="📊"
 )
 
 
 history_page = st.Page(
-    page=r"C:\Users\Omolayo-Akinola\Documents\intersteller\SCPP project\components\Transaction_History.py",
+    page=r"components/Transaction_History.py",
     title="History",
     icon="📜"
 )
