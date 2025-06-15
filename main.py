@@ -14,7 +14,6 @@ def get_database_connection():
     "DATABASE=Stablecoin;"
     "UID=DESKTOP-H2S6EIU\Omolayo-Akinola;"
     "Connect Timeout=30;"
-    "Authentication=SqlPassword;"
     )
     # URL encode the connection string
     connection_url = f"mssql+pyodbc:///?odbc_connect={urllib.parse.quote_plus(odbc_str)}"
