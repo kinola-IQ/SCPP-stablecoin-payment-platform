@@ -41,6 +41,8 @@ if "country" not in st.session_state:
     st.session_state.country = "none"
 if "email" not in st.session_state:
     st.session_state.email = "@example.com"
+if "wallet_id" not in st.session_state:
+    st.session_state.wallet_id = "None"
 if "wallet_status" not in st.session_state:
     st.session_state.wallet_status = "None"
 if "currency_type" not in st.session_state:
@@ -184,7 +186,8 @@ else:
                 st.session_state.GBP = wallet_data.GBP
                 st.session_state.USD = wallet_data.USDx
                 st.session_state.EUR = wallet_data.EURx
-                st.session_state.wallet_id = wallet_data.wallet_id
+                if "wallet_id" not in st.session_state:
+                    st.session_state.wallet_id = wallet_data.wallet_id
                 # Call login logic
                 login()
 
@@ -300,6 +303,7 @@ else:
                         ).fetchone()
                         #update session state with wallet data
                         st.session_state.wallet_status = wallet_data.wallet_status
+                        st.session_state.wallet_id = wallet_data.wallet_id
                     st.success("User created successfully! You can now log in.")
                     # Show spinner and log in the user
                     with st.spinner(text=progress_text, show_time=True):
