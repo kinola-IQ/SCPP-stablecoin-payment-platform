@@ -186,8 +186,7 @@ else:
                 st.session_state.GBP = wallet_data.GBP
                 st.session_state.USD = wallet_data.USDx
                 st.session_state.EUR = wallet_data.EURx
-                if "wallet_id" not in st.session_state:
-                    st.session_state.wallet_id = wallet_data.wallet_id
+                st.session_state.wallet_id = wallet_data.wallet_id
                 # Call login logic
                 login()
 

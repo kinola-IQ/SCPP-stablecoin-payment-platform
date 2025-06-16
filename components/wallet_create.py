@@ -171,11 +171,11 @@ def fetch_recipient_name(recipient_id):
             {"recipient_id": recipient_id}
         ).fetchone()
         if recipient_data:
-            username = conn.execute(
+            user = conn.execute(
                 text("select Full_Name from users_registration where user_id = :user_id"),
                 {"user_id": recipient_data.user_id}
             ).fetchone()
-        st.session_state.recipient = username.Full_Name
+        st.session_state.recipient = user.Full_Name
     return st.session_state.recipient
 
 # Function to transfer funds between users
@@ -194,7 +194,7 @@ def transfer_funds(recipient, amount,currency,recipient_name):
             {"amount": amount, "recipient_id": recipient}
         )
         st.success(f"Transferred {amount} {currency} to {recipient_name} successfully!")
-        st.time(1)
+        time.sleep(1)
         st.rerun()  # Refresh the page to update the wallet balance
         
 
@@ -206,7 +206,7 @@ if st.session_state.logged_in:
         # Display wallet title and basic info
         st.title(st.session_state.username + "'s Wallet")
         st.write("Wallet Status:", st.session_state.wallet_status)
-        st.write("Total Balance:", st.session_state.wallet_balance)
+        #st.write("Total Balance:", st.session_state.wallet_balance)
         
         # Create tabs for different wallet actions
         Deposit, Swap, Transfer = st.tabs(["Deposit", "Swap", "Transfer"])
@@ -233,19 +233,19 @@ if st.session_state.logged_in:
                                     if st.session_state.currency_type == "NGN":
                                         st.session_state.NGN += amount
                                         st.session_state.wallet_balance += st.session_state.NGN
-                                        update_currency("cNGN")
+                                        update_currency("cNGN",amount)
                                     elif st.session_state.currency_type == "USD":
                                         st.session_state.USD += amount
                                         st.session_state.wallet_balance += st.session_state.USD
-                                        update_currency("USDx")
+                                        update_currency("USDx",amount)
                                     elif st.session_state.currency_type == "EUR":
                                         st.session_state.EUR += amount
                                         st.session_state.wallet_balance += st.session_state.EUR
-                                        update_currency("EURx")
+                                        update_currency("EURx",amount)
                                     elif st.session_state.currency_type == "GBP":
                                         st.session_state.GBP += amount
                                         st.session_state.wallet_balance += st.session_state.GBP
-                                        update_currency("GBP")
+                                        update_currency("GBP",amount)
                                     # Display success message
                                     st.success(f"Deposited {amount} {deposit_currency} successfully!")
 
